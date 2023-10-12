@@ -1,0 +1,104 @@
+public class Lab6 {
+
+    // Converts a roman numeral String to an arabic numeral integer using recursion
+    public static int convertToArabic(String roman) {
+    	int sum = 0;
+    	int i =0;
+    	return convertHelper(roman, 0, 0);
+    }
+    	//return convertHelper;
+        // TODO: implement this method
+    public static int convertHelper(String roman, int i, int sum) {
+		
+    	if(i >= roman.length()) {
+			return sum;
+		}else {
+			int curr = Value(roman.charAt(i));
+			
+			if (i < roman.length() -1) { 
+				int next = Value(roman.charAt(i+1));
+				if(curr < next) {
+					return convertHelper(roman, i +2, sum + next - curr);
+				}
+			}
+			
+			return convertHelper (roman, i + 1, sum + curr);
+		
+		}
+		
+    }	
+		//Recursion
+		//Get the arabic value of roman.charAt(index) & roman.charAt(i +1)
+		//Test is next >char
+		//If it is: Look at case I
+		// else: sum +=Value(romancharAt(i)); have to take from curr value, since it return sum
+    	//so curr =
+			
+	/* x: Look at what comes next
+	 * Is next>char
+	 * No?
+	 * add X (10)
+	 * recurse
+	 * converHelper(roman, i, sum)
+	 * I: check is next > curr
+	 * Yes?
+	 * Add sum += next -curr
+	 * convertHelper(roman, i+2, sum)
+	 * return sum
+	 */
+	
+ 
+    public static int Value(char romanValue) {
+    	switch (romanValue) {
+    	case 'I':
+    		return 1;
+    	case 'V':
+    		return 5;
+    	case 'X':
+    		return 10;
+    	case'L':
+    		return 50;
+    	case'C':
+    		return 100;
+    	case'D':
+    		return 500;
+    	case 'M':
+    		return 1000;
+    	default:
+    		return 0;
+    	}
+    	}
+    
+//Use value method to assign roman numeral X through M to integer value
+
+/*    
+    
+    value = ('I',  1);
+	value = ('V',  5);
+	('X',  10);
+	('L',  50);
+	('C',  100);
+	('D',  500);
+	('M',  1000);
+    
+    }
+
+	
+	*/
+    public static void main(String[] args) {
+        System.out.println("X --> " + convertToArabic("X"));
+        System.out.println("IX --> " + convertToArabic("IX"));
+        System.out.println("XIX --> " + convertToArabic("XIX"));
+        System.out.println("MCMIX --> " + convertToArabic("MCMIX"));
+        System.out.println("MDLXXV --> " + convertToArabic("MDLXXV"));
+        System.out.println("MDCCLXXXVII --> " + convertToArabic("MDCCLXXXVII"));
+    }
+    }
+    
+	//value method, give char and it return that value in arabic notation, use switch case(g)   public static int value(String roman, int) {
+    //objects can be null, not string or int
+    //dont use 0 in string, use it in array when counting
+    //index-1
+    //length(0-1 (index at 4 is 4, length -1 is 4
+    //increment sum first, return recursion
+    //return converter, in sum section put 0, return copy and paste first line
